@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rhythm's One-Pager</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- ScrollReveal -->
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      scroll-behavior: smooth;
+      background: #ffffff;
+      color: #000;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* BUBBLE BACKGROUND */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: float 20s infinite ease-in-out;
+    }
+
+    .bubble:nth-child(1) {
+      width: 200px;
+      height: 200px;
+      background: #FFB6C1;
+      left: 10%;
+      top: 30%;
+      animation-delay: 0s;
+    }
+
+    .bubble:nth-child(2) {
+      width: 300px;
+      height: 300px;
+      background: #ADD8E6;
+      left: 70%;
+      top: 10%;
+      animation-delay: 4s;
+    }
+
+    .bubble:nth-child(3) {
+      width: 150px;
+      height: 150px;
+      background: #E6E6FA;
+      left: 40%;
+      top: 80%;
+      animation-delay: 2s;
+    }
+
+    .bubble:nth-child(4) {
+      width: 250px;
+      height: 250px;
+      background: #FFFACD;
+      left: 80%;
+      top: 60%;
+      animation-delay: 6s;
+    }
+
+    .bubble:nth-child(5) {
+      width: 180px;
+      height: 180px;
+      background: #D1F2EB;
+      left: 20%;
+      top: 75%;
+      animation-delay: 8s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-50px) rotate(180deg);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(0) rotate(360deg);
+        opacity: 0.3;
+      }
+    }
+
+    /* Header */
+    header {
+      padding: 140px 20px 60px;
+      text-align: center;
+    }
+
+    header h1,
+    header h2 {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    header h2 {
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav {
+      margin-top: 40px;
+    }
+
+    nav a {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      border: 1px solid black;
+      border-radius: 25px;
+      text-decoration: none;
+      color: black;
+      background-color: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      font-weight: 400;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: black;
+      color: white;
+    }
+
+    section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+      padding: 100px 20px;
+      min-height: 100vh;
+      text-align: center;
+      border-top: 1px solid #eee;
+    }
+
+    section.reveal-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section h3 {
+      font-size: 2em;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      max-width: 700px;
+      margin: 0 auto 20px;
+      font-weight: 300;
+    }
+
+    footer {
+      padding: 40px;
+      font-size: 0.9em;
+      color: #666;
+      text-align: center;
+    }
+
+    /* Responsive Tweaks */
+    @media (max-width: 600px) {
+      header h2 {
+        font-size: 3em;
+      }
+      section {
+        padding: 60px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated Bubble Background -->
+  <div class="background">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <h1>HEY! YOU'VE FOUND</h1>
+    <h2>RHYTHM</h2>
+    <nav>
+      <a href="#education">Education</a>
+      <a href="#work">Work Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#volunteer">Volunteer Work</a>
+      <a href="#honors">Honors & Awards</a>
+      <a href="#contact">Contact Me!</a>
+    </nav>
+  </header>
+
+  <!-- About Me -->
+  <section id="about">
+    <h3>About Me</h3>
+    <p>
+      Hi! I'm Rhythm — a tech-savvy explorer passionate about building impactful software,
+      decoding forests with AI, and bringing ideas to life. With a background in Computing Science,
+      I blend logic and creativity to solve real-world problems. Welcome to my digital space!
+    </p>
+  </section>
+
+  <!-- Sections -->
+  <section id="education">
+    <h3>Education</h3>
+    <p>Details about education go here...</p>
+  </section>
+
+  <section id="work">
+    <h3>Work Experience</h3>
+    <p>Details about work experience go here...</p>
+  </section>
+
+  <section id="projects">
+    <h3>Projects</h3>
+    <p>Details about projects go here...</p>
+  </section>
+
+  <section id="volunteer">
+    <h3>Volunteer Work</h3>
+    <p>Details about volunteer work go here...</p>
+  </section>
+
+  <section id="honors">
+    <h3>Honors & Awards</h3>
+    <p>Details about honors and awards go here...</p>
+  </section>
+
+  <section id="contact">
+    <h3>Contact Me</h3>
+    <p>Email: <a href="mailto:rhythm@example.com">rhythm@example.com</a></p>
+    <p>Phone: <a href="tel:+12345678900">+1 234 567 8900</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Rhythm Chauhan. All rights reserved.
+  </footer>
+
+  <!-- ScrollReveal Script -->
+  <script>
+    ScrollReveal().reveal('section', {
+      distance: '50px',
+      duration: 800,
+      easing: 'ease-out',
+      origin: 'bottom',
+      interval: 200
+    });
+
+    // Fallback IntersectionObserver
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal-visible");
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
