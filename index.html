@@ -3,272 +3,469 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rhythm's One-Pager</title>
-
-  <!-- Google Font -->
+  <title>Rhythm Chauhan | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
-
-  <!-- ScrollReveal -->
   <script src="https://unpkg.com/scrollreveal"></script>
-
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Montserrat', sans-serif;
-      scroll-behavior: smooth;
-      background: #ffffff;
-      color: #000;
+      background: linear-gradient(120deg, #f0f4f8, #ffffff);
+      color: #1a1a1a;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* BUBBLE BACKGROUND */
-    .background {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      width: 100%;
-      height: 100%;
+    header {
+      position: relative;
+      padding: 100px 20px 60px;
+      text-align: center;
+      background: #eaf6ff;
+      color: #1a1a1a;
       overflow: hidden;
     }
 
-    .bubble {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.4;
-      animation: float 20s infinite ease-in-out;
-    }
-
-    .bubble:nth-child(1) {
-      width: 200px;
-      height: 200px;
-      background: #FFB6C1;
-      left: 10%;
-      top: 30%;
-      animation-delay: 0s;
-    }
-
-    .bubble:nth-child(2) {
-      width: 300px;
-      height: 300px;
-      background: #ADD8E6;
-      left: 70%;
-      top: 10%;
-      animation-delay: 4s;
-    }
-
-    .bubble:nth-child(3) {
-      width: 150px;
-      height: 150px;
-      background: #E6E6FA;
-      left: 40%;
-      top: 80%;
-      animation-delay: 2s;
-    }
-
-    .bubble:nth-child(4) {
+    .hero-image {
       width: 250px;
       height: 250px;
-      background: #FFFACD;
-      left: 80%;
-      top: 60%;
-      animation-delay: 6s;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid white;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
     }
 
-    .bubble:nth-child(5) {
-      width: 180px;
-      height: 180px;
-      background: #D1F2EB;
-      left: 20%;
-      top: 75%;
-      animation-delay: 8s;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.3;
-      }
-      50% {
-        transform: translateY(-50px) rotate(180deg);
-        opacity: 0.5;
-      }
-      100% {
-        transform: translateY(0) rotate(360deg);
-        opacity: 0.3;
-      }
-    }
-
-    /* Header */
-    header {
-      padding: 140px 20px 60px;
-      text-align: center;
-    }
-
-    header h1,
-    header h2 {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeUp 1s ease forwards;
+    header h1 {
+      font-size: 1.8em;
+      font-weight: 400;
     }
 
     header h2 {
-      animation-delay: 0.5s;
-    }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      font-size: 3em;
+      font-weight: 700;
+      margin-top: 10px;
     }
 
     nav {
-      margin-top: 40px;
+      margin-top: 30px;
     }
 
     nav a {
       display: inline-block;
       margin: 10px;
-      padding: 10px 20px;
-      border: 1px solid black;
+      padding: 12px 24px;
       border-radius: 25px;
+      background-color: #ffffff;
+      color: #333;
+      font-weight: 500;
       text-decoration: none;
-      color: black;
-      background-color: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(10px);
-      font-weight: 400;
+      border: 1px solid #ccc;
       transition: all 0.3s ease;
     }
 
     nav a:hover {
-      background-color: black;
-      color: white;
+      background-color: #333;
+      color: #fff;
+      border-color: #333;
     }
+	.education-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.education-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.education-image img {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+	
+	.work-photos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.work-photos img {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
 
     section {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease;
       padding: 100px 20px;
-      min-height: 100vh;
       text-align: center;
-      border-top: 1px solid #eee;
-    }
-
-    section.reveal-visible {
-      opacity: 1;
-      transform: translateY(0);
+      border-bottom: 1px solid #e0e0e0;
     }
 
     section h3 {
-      font-size: 2em;
-      font-weight: 600;
-      margin-bottom: 20px;
+      font-size: 2.5em;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 30px;
     }
 
     section p {
-      max-width: 700px;
-      margin: 0 auto 20px;
-      font-weight: 300;
+      max-width: 850px;
+      margin: 0 auto 30px;
+      line-height: 1.8;
+      font-size: 1.1em;
+      text-align: justify;
+    }
+
+    ul {
+      text-align: left;
+      max-width: 850px;
+      margin: 0 auto 30px;
+      padding-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 15px;
+      line-height: 1.6;
+      font-size: 1em;
+    }
+
+    a {
+      color: #0077cc;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     footer {
-      padding: 40px;
+      padding: 50px 20px;
+      background-color: #f4f4f4;
+      text-align: center;
       font-size: 0.9em;
       color: #666;
-      text-align: center;
     }
 
-    /* Responsive Tweaks */
-    @media (max-width: 600px) {
-      header h2 {
-        font-size: 3em;
-      }
-      section {
-        padding: 60px 15px;
-      }
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.5em; }
+      header h2 { font-size: 2.2em; }
+      nav a { padding: 10px 18px; font-size: 0.9em; }
+      section h3 { font-size: 2em; }
     }
+	
+	.project-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.project-row img {
+  width: 350px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.project-info {
+  flex: 1;
+  min-width: 250px;
+  text-align: left;
+}
+
+.project-info h4 {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  color: #222;
+  text-align: left;
+}
+
+.project-info p {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  color: #444;
+  text-align: justify;
+}
+
+.project-info a {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background-color: #0077cc;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.project-info a:hover {
+  background-color: #005fa3;
+}
+
+@media (max-width: 768px) {
+  .project-row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .project-row img {
+    margin: 0 auto 15px;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .project-info {
+    text-align: center;
+  }
+
+  .project-info h4 {
+    text-align: center;
+  }
+
+  .project-info p {
+    text-align: justify;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .project-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .project-box img {
+    margin-right: 0;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .project-details a {
+    margin-top: 10px;
+  }
+}
+
   </style>
 </head>
 <body>
-
-  <!-- Animated Bubble Background -->
-  <div class="background">
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-  </div>
-
-  <!-- Header -->
   <header>
+    <img src="profile.jpg" alt="Rhythm Chauhan" class="hero-image" />
     <h1>HEY! YOU'VE FOUND</h1>
-    <h2>RHYTHM</h2>
+    <h2>RHYTHM CHAUHAN</h2>
     <nav>
+      <a href="#about">About</a>
       <a href="#education">Education</a>
-      <a href="#work">Work Experience</a>
+      <a href="#work">Work</a>
       <a href="#projects">Projects</a>
-      <a href="#volunteer">Volunteer Work</a>
-      <a href="#honors">Honors & Awards</a>
-      <a href="#contact">Contact Me!</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#honors">Awards</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- About Me -->
   <section id="about">
-    <h3>About Me</h3>
-    <p>
-      Hi! I'm Rhythm — a tech-savvy explorer passionate about building impactful software,
-      decoding forests with AI, and bringing ideas to life. With a background in Computing Science,
-      I blend logic and creativity to solve real-world problems. Welcome to my digital space!
-    </p>
+    <h3>ABOUT ME</h3>
+	<p>Welcome to my little corner of the internet! </p>
+	<br>
+	<p>I’m a tech enthusiast, creative thinker, and all-around curious human who loves building cool, meaningful things. Whether it’s designing AI tools to map forests, developing sleek web apps, or leading product rollouts that make people’s lives easier — I’m in my element when I get to learn, build, and collaborate.
+	</p><p>Right now, I’m a Technical Product Analyst at Vivacity Technologies, where I’ve led multiple client rollouts, worked hands-on with AI integrations, and helped shape products from the ground up. I juggle everything from writing code and running demos to guiding development and connecting with users — and I genuinely love every part of it.
+	</p><p>Outside of work, I dive into personal projects and freelance work that let me stretch my creativity and tech muscles. I’ve built soil prediction models using machine learning, designed AI-driven systems that analyze LiDAR data, and created automated tools that make complex environmental data more accessible and actionable.
+	</p><p>I’ve also explored cybersecurity research, contributed to academic publications, and led empowering initiatives as the President of the Women in STEM Club at my university.
+	</p><p>When I’m not deep in code or project planning, you’ll probably find me doing something artsy or chill — sketching, playing the guitar, singing, reading a good book, or painting my nails a new color just because. These little joys keep me balanced and inspired.
+	</p>
   </section>
 
-  <!-- Sections -->
   <section id="education">
-    <h3>Education</h3>
-    <p>Details about education go here...</p>
-  </section>
+  <h3>EDUCATION</h3>
+  <div class="education-container">
+    <div class="education-text">
+      <p><strong>Bachelor of Computing Science</strong><br>
+        Thompson Rivers University (2020 – 2024)<br>
+        GPA: 4.31 / 4.33<br>
+        Dean’s List in all semesters. Recipient of 6 scholarships.
+      </p>
+    </div>
+    <div class="education-image">
+      <img src="graduation.jpg" alt="Graduation Photo" />
+    </div>
+  </div>
+</section>
+
 
   <section id="work">
-    <h3>Work Experience</h3>
-    <p>Details about work experience go here...</p>
-  </section>
-
+    <h3>WORK EXPERIENCE</h3>
+    <p><strong>Technical Product Analyst</strong><br><a href="https://www.vvctec.com">Vivacity Technologies</a> | Jan 2024 – Present</p>
+    <ul>
+      <li>Led project management for two client-specific implementations and one broader workshop-based deployment program, ensuring smooth coordination, iterative delivery, and stakeholder alignment.
+<li>Worked hands-on in product management, helping shape and prioritize use cases based on user needs and client feedback.
+<li>Drove the development of the product’s AI module from research to completion, contributing directly to model selection, POC generation, and integration.
+<li>Collaborated across engineering, design, and client teams to translate business goals into actionable technical solutions.
+<li>Played a key role in early-stage lead generation efforts by helping position the product, support demos, and secure initial client traction.
+    </ul>
+	<div class="work-photos">
+  <img src="vivacity1.jpg" alt="Working at Vivacity" />
+  <img src="vivacity2.jpg" alt="Presenting AI module" />
+</div>
+<br><br>
+    <p><strong>ML/AI Engineer & Website Developer</strong><br><a href="https://www.aurorauav.com">Aurora UAV Services</a> | Apr 2024 – Present</p>
+    <ul>
+      <li>Built ML models using Python/R for LiDAR analysis and forest reporting.</li>
+      <li>Created a multi-page web portal using PHP/HTML/JS on cPanel.</li>
+      <li>Integrated Google Analytics and SEO enhancements.</li>
+    </ul>
+    <p><strong>Technical Analyst</strong><br><a href="https://www.vvctec.com">Vivacity Technologies</a> | Jun 2023 – Dec 2023</p>
+    <ul>
+      <li>Developed full-stack apps using React, Node.js, and Google Maps APIs.</li>
+      <li>Managed GitHub repos, wrote API docs, and assisted with cybersecurity metrics.</li>
+    </ul>
+    <p><strong>Research Assistant</strong><br><a href="https://www.tru.ca/">TRU</a> | Feb 2022 – Apr 2022</p>
+    <ul>
+      <li>Analyzed fileless malware through static/dynamic techniques.</li>
+      <li>Evaluated AutoML tools and supported academic publishing.</li>
+    </ul>
+  
+  
   <section id="projects">
-    <h3>Projects</h3>
-    <p>Details about projects go here...</p>
-  </section>
+  <h3>PROJECTS</h3>
+
+  <div class="project-row" style="background-color: #f7fbff; padding: 20px; border-radius: 10px;">
+    <img src="soil.avif" alt="Soil Prediction Model">
+    <div class="project-info">
+      <h4>SOIL ROCK PREDICTION MODEL</h4>
+      <p><strong>Machine Learning (Python, Rasters, QGIS)</strong></p>
+      <p><em>January 2024 - April 2024</em></p>
+      <p><ul>
+	  <li>Developed a prediction model for 1600 hectares of land for Aurora UAV Services.</li>
+      <li>Utilized unsupervised machine learning algorithm Random Forest, spatial cross-validation, and recursive feature elimination to build the model.</li>
+      <li>Achieved 84.2% accuracy in the final trained model.</li>
+      <li>Created Future Prediction for the same set of land for 5 and 10 years from date.</li></ul></p>
+      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | Soil Prediction Model</a>
+    </div>
+  </div>
+
+  <div class="project-row" style="background-color: #ffffff; padding: 20px; border-radius: 10px;">
+    <img src="zengrove.avif" alt="ZenGrove">
+    <div class="project-info">
+      <h4>ZENGROVE - YOUR MEDITATION ZONE</h4>
+      <p><strong>Website (MVC, Bootstrap, JavaScript, PHP, MySQL, HTML, CSS, JQuery)</strong></p>
+      <p><em>January 2024 - April 2024</em></p>
+      <p><ul>
+	  <li>Developed ZenGrove: an online platform for meditation and community support.
+      <li>Key Features: Simple goal setting, progress tracking, and meditation timers.
+      <li>Community Engagement: Facilitated user connections, discussions, and messaging.
+      <li>Recognition System: Implemented a medal system for celebrating user achievements.
+      <li>Technical Architecture: Built on MVC with MySQL, jQuery, and Bootstrap for optimal performance.
+      </ul>
+	  </p><a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | ZenGrove</a>
+    </div>
+  </div>
+
+  <div class="project-row" style="background-color: #f7fbff; padding: 20px; border-radius: 10px;">
+    <img src="renai.avif" alt="Renaissance AI">
+    <div class="project-info">
+      <h4>RENAISSANCE AI GENERATOR</h4>
+      <p><strong>Generative Adversarial Network (Tensorflow, Artificial Intelligence, Python)</strong></p>
+      <p><em>January 2022 - April 2022</em></p>
+      <p>Associated with Thompson Rivers University.<br>
+      Built a 2-part Generative Adversarial Network with a Generator and a Discriminator to convert normal photos into Renaissance Paintings.<br>
+      Made use of existing Renaissance photo packages to train the AI network.<br>
+      Performed surveys to understand human response to AI generated images.</p>
+      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | RenAI</a>
+    </div>
+  </div>
+
+  <div class="project-row" style="background-color: #ffffff; padding: 20px; border-radius: 10px;">
+    <img src="cluedo.avif" alt="C-Cluedo">
+    <div class="project-info">
+      <h4>C-CLUEDO</h4>
+      <p><strong>C based game (C Language)</strong></p>
+      <p><em>January 2022 - April 2022</em></p>
+      <p>Text-based implementation of the board game Cluedo.<br>
+      Random selection of the case file (murderer, weapon, and crime scene).<br>
+      Users play as detectives making educated guesses about the murder case.</p>
+      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | C-Cluedo</a>
+    </div>
+  </div>
+
+  <div class="project-row" style="background-color: #f7fbff; padding: 20px; border-radius: 10px;">
+    <img src="shrinkme.avif" alt="SHRINKMe">
+    <div class="project-info">
+      <h4>GROUP THERAPY APPLICATION</h4>
+      <p><strong>SHRINKMe (Android Studio - Java, XML)</strong></p>
+      <p><em>January 2022 - April 2022</em></p>
+      <p>Focused on providing a virtual platform for group therapy with Therapy Rooms and an articles section.<br>
+      Firebase Authentication and Firebase Realtime Database.<br>
+      Recycler view, list view, and XML layout elements for interactive design.</p>
+      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | ShrinkME</a>
+    </div>
+  </div>
+
+  <div class="project-row" style="background-color: #ffffff; padding: 20px; border-radius: 10px;">
+    <img src="verny.avif" alt="Vernapro">
+    <div class="project-info">
+      <h4>LANGUAGE LEARNING APPLICATION</h4>
+      <p><strong>Vernapro (Android Studio - Java, XML)</strong></p>
+      <p><em>August 2021 - December 2021</em></p>
+      <p>A language learning application for bilinguals wishing to learn a new language.<br>
+      Concepts of audio-visual learning using Shared Preferences and Intents for Quizzes.</p>
+      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | Vernapro</a>
+    </div>
+  </div>
+
+</section>
+
 
   <section id="volunteer">
-    <h3>Volunteer Work</h3>
-    <p>Details about volunteer work go here...</p>
+    <h3>Volunteer Experience</h3>
+    <ul>
+      <li><strong>President, Women in STEM Club</strong>: Led workshops, networking events, and STEM promotion at TRU (2022–2024).</li>
+      <li><strong>IEEE Paper Reviewer</strong>: Reviewed papers for the Bioinformatics and Biomedicine Conference 2022.</li>
+      <li><strong>Community Leader, Unschool</strong>: Managed team of 30+, conducted interviews, mentored interns (2020).</li>
+      <li><strong>Campus Ambassador, GenNext</strong>: Promoted educational counseling in high school (2019–2020).</li>
+    </ul>
   </section>
 
   <section id="honors">
-    <h3>Honors & Awards</h3>
-    <p>Details about honors and awards go here...</p>
+    <h3>HONORS & AWARDS</h3>
+    <ul>
+      <li>Computing Science Upper Level Scholarship</li>
+      <li>TRU Foundation Undergraduate Academic Scholarship</li>
+      <li>Rob Horne Memorial Computing Science Scholarship</li>
+      <li>TELUS Excellence in Science Award</li>
+      <li>IndoCanLinks Science Award</li>
+      <li>Faculty of Science Dean's Award</li>
+    </ul>
   </section>
 
   <section id="contact">
-    <h3>Contact Me</h3>
-    <p>Email: <a href="mailto:rhythm@example.com">rhythm@example.com</a></p>
-    <p>Phone: <a href="tel:+12345678900">+1 234 567 8900</a></p>
+    <h3>CONTACT ME</h3>
+    <p>Email: <a href="mailto:rhythm.c.chauhan@gmail.com">rhythm.c.chauhan@gmail.com</a></p>
+    <p>Phone: <a href="tel:+12365979398">+1 236-597-9398</a></p>
+    <p>Website: <a href="https://eyeamrhythm2003.wixsite.com/aboutme" target="_blank">eyeamrhythm2003.wixsite.com/aboutme</a></p>
   </section>
 
   <footer>
     &copy; 2025 Rhythm Chauhan. All rights reserved.
   </footer>
 
-  <!-- ScrollReveal Script -->
   <script>
     ScrollReveal().reveal('section', {
       distance: '50px',
@@ -277,19 +474,32 @@
       origin: 'bottom',
       interval: 200
     });
-
-    // Fallback IntersectionObserver
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("reveal-visible");
-        }
-      });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => observer.observe(section));
   </script>
 
+  <script>
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        const startY = window.scrollY;
+        const endY = target.getBoundingClientRect().top + startY;
+        const distance = endY - startY;
+        const duration = 1000;
+        let startTime = null;
+
+        function scrollStep(timestamp) {
+          if (!startTime) startTime = timestamp;
+          const timeElapsed = timestamp - startTime;
+          const progress = Math.min(timeElapsed / duration, 1);
+          const easing = 1 - Math.pow(1 - progress, 4);
+          window.scrollTo(0, startY + distance * easing);
+          if (progress < 1) requestAnimationFrame(scrollStep);
+        }
+
+        requestAnimationFrame(scrollStep);
+      });
+    });
+  </script>
 </body>
 </html>
