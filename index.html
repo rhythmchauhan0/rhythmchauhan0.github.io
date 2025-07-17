@@ -23,8 +23,6 @@
       position: relative;
       padding: 100px 20px 60px;
       text-align: center;
-      background: #eaf6ff;
-      color: #1a1a1a;
       overflow: hidden;
     }
 
@@ -114,6 +112,15 @@
       text-align: center;
       border-bottom: 1px solid #e0e0e0;
     }
+	
+	section:nth-of-type(even) {
+  background-color: #ffffff;
+}
+
+section:nth-of-type(odd) {
+  background-color: #f0f8ff; /* light blue (AliceBlue) */
+}
+
 
     section h3 {
       font-size: 2.5em;
@@ -244,6 +251,25 @@
   }
 }
 
+.github-link {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  background-color: #e6f4ff;
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 15px 14px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.github-link:hover {
+  background-color: #005fa3;
+  color: white;
+}
+
+
 
 @media (max-width: 768px) {
   .project-box {
@@ -262,10 +288,51 @@
     margin-top: 10px;
   }
 }
+#backToTop {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  z-index: 100;
+  font-size: 22px;
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid black; /* <-- White border */
+  border-radius: 50%;
+  padding: 14px 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+#backToTop:hover {
+  background-color: #f0f8ff;
+}
+
 
   </style>
 </head>
 <body>
+<button id="backToTop" title="Back to top">⮝</button>
+<script>
+  const backToTopBtn = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.style.display = 'block';
+    } else {
+      backToTopBtn.style.display = 'none';
+    }
+  });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+</script>
+
   <header>
     <img src="profile.jpg" alt="Rhythm Chauhan" class="hero-image" />
     <h1>HEY! YOU'VE FOUND</h1>
@@ -282,16 +349,18 @@
   </header>
 
   <section id="about">
-    <h3>ABOUT ME</h3>
-	<p>Welcome to my little corner of the internet! </p>
-	<br>
-	<p>I’m a tech enthusiast, creative thinker, and all-around curious human who loves building cool, meaningful things. Whether it’s designing AI tools to map forests, developing sleek web apps, or leading product rollouts that make people’s lives easier — I’m in my element when I get to learn, build, and collaborate.
-	</p><p>Right now, I’m a Technical Product Analyst at Vivacity Technologies, where I’ve led multiple client rollouts, worked hands-on with AI integrations, and helped shape products from the ground up. I juggle everything from writing code and running demos to guiding development and connecting with users — and I genuinely love every part of it.
-	</p><p>Outside of work, I dive into personal projects and freelance work that let me stretch my creativity and tech muscles. I’ve built soil prediction models using machine learning, designed AI-driven systems that analyze LiDAR data, and created automated tools that make complex environmental data more accessible and actionable.
-	</p><p>I’ve also explored cybersecurity research, contributed to academic publications, and led empowering initiatives as the President of the Women in STEM Club at my university.
-	</p><p>When I’m not deep in code or project planning, you’ll probably find me doing something artsy or chill — sketching, playing the guitar, singing, reading a good book, or painting my nails a new color just because. These little joys keep me balanced and inspired.
-	</p>
-  </section>
+  <h3>ABOUT ME</h3>
+  <div style="max-width: 850px; margin: 0 auto; text-align: center;">
+    <p style="text-align: center;"><b>Welcome to my little corner of the internet!</b></p>
+    <br>
+    <p style="text-align: center;">I’m a life enthusiast, creative thinker, and all-around curious human who loves building cool, meaningful things. Whether it’s designing AI tools to map forests, developing sleek web apps, or leading product rollouts that make people’s lives easier — I’m in my element when I get to learn, build, and collaborate.</p>
+    <p style="text-align: center;">Right now, I’m a Technical Product Analyst at Vivacity Technologies, where I’ve led multiple client rollouts, worked hands-on with AI integrations, and helped shape products from the ground up. I juggle everything from writing code and running demos to guiding development and connecting with users — and I genuinely love every part of it.</p>
+    <p style="text-align: center;">Outside of work, I dive into personal projects and freelance work that let me stretch my creativity and tech muscles. I’ve built soil prediction models using machine learning, designed AI-driven systems that analyze LiDAR data, and created automated tools that make complex environmental data more accessible and actionable.</p>
+    <p style="text-align: center;">I’ve also explored cybersecurity research, contributed to academic publications, and led empowering initiatives as the President of the Women in STEM Club at my university.</p>
+    <p style="text-align: center;">When I’m not deep in code or project planning, you’ll probably find me doing something artsy or chill — sketching, playing the guitar, singing, reading a good book, or painting my nails a new color just because. These little joys keep me balanced and inspired.</p>
+  </div>
+</section>
+
 
   <section id="education">
   <h3>EDUCATION</h3>
@@ -300,7 +369,7 @@
       <p><strong>Bachelor of Computing Science</strong><br>
         Thompson Rivers University (2020 – 2024)<br>
         GPA: 4.31 / 4.33<br>
-        Dean’s List in all semesters. Recipient of 6 scholarships.
+        Dean’s List in all semesters. <br>Recipient of 6 scholarships.
       </p>
     </div>
     <div class="education-image">
@@ -327,9 +396,16 @@
 <br><br>
     <p><strong>ML/AI Engineer & Website Developer</strong><br><a href="https://www.aurorauav.com">Aurora UAV Services</a> | Apr 2024 – Present</p>
     <ul>
-      <li>Built ML models using Python/R for LiDAR analysis and forest reporting.</li>
-      <li>Created a multi-page web portal using PHP/HTML/JS on cPanel.</li>
-      <li>Integrated Google Analytics and SEO enhancements.</li>
+      <li> Designing and implementing AI algorithms using R and Python for analyzing LiDAR and orthographic data, and
+ producing detailed reports and maps on forest conditions</li>
+ <li>
+ Developing and maintaining a user-friendly web portal on cPanel to ensure seamless access to data and reports
+ for stakeholders.</li><li>
+ Creating automated workflows to streamline data processing, reduce manual intervention, and enhance
+ efficiency.</li><li>
+ Utilized PHP, HTML, and JavaScript to lead the conversion of a single-page website into a dynamic multi-page
+ platform. </li><li>
+Implemented Google Analytics for tracking website trafficand conducted SEO editing to enhance visibility</li>
     </ul>
     <p><strong>Technical Analyst</strong><br><a href="https://www.vvctec.com">Vivacity Technologies</a> | Jun 2023 – Dec 2023</p>
     <ul>
@@ -347,119 +423,171 @@
   <h3>PROJECTS</h3>
 
   <div class="project-row" style="background-color: #f7fbff; padding: 20px; border-radius: 10px;">
-    <img src="soil.avif" alt="Soil Prediction Model">
+    <div style="text-align: center;">
+      <img src="soil.avif" alt="Soil Prediction Model"><br><br>
+      <a href="https://github.com/FierceWeirdo/SoilPredictionModel" class="github-link">GitHub | Soil Prediction Model</a>
+    </div>
     <div class="project-info">
       <h4>SOIL ROCK PREDICTION MODEL</h4>
       <p><strong>Machine Learning (Python, Rasters, QGIS)</strong></p>
       <p><em>January 2024 - April 2024</em></p>
-      <p><ul>
-	  <li>Developed a prediction model for 1600 hectares of land for Aurora UAV Services.</li>
-      <li>Utilized unsupervised machine learning algorithm Random Forest, spatial cross-validation, and recursive feature elimination to build the model.</li>
-      <li>Achieved 84.2% accuracy in the final trained model.</li>
-      <li>Created Future Prediction for the same set of land for 5 and 10 years from date.</li></ul></p>
-      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | Soil Prediction Model</a>
+      <ul>
+        <li>Developed a prediction model for 1600 hectares of land for Aurora UAV Services.</li>
+        <li>Utilized unsupervised machine learning algorithm Random Forest, spatial cross-validation, and recursive feature elimination to build the model.</li>
+        <li>Achieved 84.2% accuracy in the final trained model.</li>
+        <li>Created Future Prediction for the same set of land for 5 and 10 years from date.</li>
+      </ul>
     </div>
   </div>
 
   <div class="project-row" style="background-color: #ffffff; padding: 20px; border-radius: 10px;">
-    <img src="zengrove.avif" alt="ZenGrove">
+    <div style="text-align: center;">
+      <img src="zengrove.avif" alt="ZenGrove"><br><br>
+      <a href="https://github.com/FierceWeirdo/ZenGrove" class="github-link">GitHub | ZenGrove</a>
+    </div>
     <div class="project-info">
       <h4>ZENGROVE - YOUR MEDITATION ZONE</h4>
       <p><strong>Website (MVC, Bootstrap, JavaScript, PHP, MySQL, HTML, CSS, JQuery)</strong></p>
       <p><em>January 2024 - April 2024</em></p>
-      <p><ul>
-	  <li>Developed ZenGrove: an online platform for meditation and community support.
-      <li>Key Features: Simple goal setting, progress tracking, and meditation timers.
-      <li>Community Engagement: Facilitated user connections, discussions, and messaging.
-      <li>Recognition System: Implemented a medal system for celebrating user achievements.
-      <li>Technical Architecture: Built on MVC with MySQL, jQuery, and Bootstrap for optimal performance.
+      <ul>
+        <li>Developed ZenGrove: an online platform for meditation and community support.</li>
+        <li>Key Features: Simple goal setting, progress tracking, and meditation timers.</li>
+        <li>Community Engagement: Facilitated user connections, discussions, and messaging.</li>
+        <li>Recognition System: Implemented a medal system for celebrating user achievements.</li>
+        <li>Technical Architecture: Built on MVC with MySQL, jQuery, and Bootstrap for optimal performance.</li>
       </ul>
-	  </p><a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | ZenGrove</a>
     </div>
   </div>
 
   <div class="project-row" style="background-color: #f7fbff; padding: 20px; border-radius: 10px;">
-    <img src="renai.avif" alt="Renaissance AI">
+    <div style="text-align: center;">
+      <img src="renai.avif" alt="Renaissance AI"><br><br>
+      <a href="https://github.com/FierceWeirdo/RenAIssance-Generator" class="github-link">GitHub | RenAI</a>
+    </div>
     <div class="project-info">
       <h4>RENAISSANCE AI GENERATOR</h4>
       <p><strong>Generative Adversarial Network (Tensorflow, Artificial Intelligence, Python)</strong></p>
       <p><em>January 2022 - April 2022</em></p>
-      <p>Associated with Thompson Rivers University.<br>
-      Built a 2-part Generative Adversarial Network with a Generator and a Discriminator to convert normal photos into Renaissance Paintings.<br>
-      Made use of existing Renaissance photo packages to train the AI network.<br>
-      Performed surveys to understand human response to AI generated images.</p>
-      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | RenAI</a>
+      <ul>
+        <li>Built a 2-part Generative Adversarial Network with a Generator and a Discriminator to convert normal photos into Renaissance Paintings.</li>
+        <li>Made use of existing Renaissance photo packages to train the AI network.</li>
+        <li>Performed surveys to understand human response to AI generated images.</li>
+      </ul>
     </div>
   </div>
 
   <div class="project-row" style="background-color: #ffffff; padding: 20px; border-radius: 10px;">
-    <img src="cluedo.avif" alt="C-Cluedo">
+    <div style="text-align: center;">
+      <img src="cluedo.avif" alt="C-Cluedo">
+      <a href="https://github.com/FierceWeirdo/C-Cluedo" class="github-link">GitHub | C-Cluedo</a>
+    </div>
     <div class="project-info">
       <h4>C-CLUEDO</h4>
       <p><strong>C based game (C Language)</strong></p>
       <p><em>January 2022 - April 2022</em></p>
-      <p>Text-based implementation of the board game Cluedo.<br>
-      Random selection of the case file (murderer, weapon, and crime scene).<br>
-      Users play as detectives making educated guesses about the murder case.</p>
-      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | C-Cluedo</a>
+      <ul>
+        <li>Text-based implementation of the board game Cluedo.</li>
+        <li>Random selection of the case file (murderer, weapon, and crime scene).</li>
+        <li>Users play as detectives making educated guesses about the murder case.</li>
+      </ul>
     </div>
   </div>
 
   <div class="project-row" style="background-color: #f7fbff; padding: 20px; border-radius: 10px;">
-    <img src="shrinkme.avif" alt="SHRINKMe">
+    <div style="text-align: center;">
+      <img src="shrinkme.avif" alt="SHRINKMe">
+      <a href="https://github.com/FierceWeirdo/ShrinkME" class="github-link">GitHub | ShrinkME</a>
+    </div>
     <div class="project-info">
       <h4>GROUP THERAPY APPLICATION</h4>
       <p><strong>SHRINKMe (Android Studio - Java, XML)</strong></p>
       <p><em>January 2022 - April 2022</em></p>
-      <p>Focused on providing a virtual platform for group therapy with Therapy Rooms and an articles section.<br>
-      Firebase Authentication and Firebase Realtime Database.<br>
-      Recycler view, list view, and XML layout elements for interactive design.</p>
-      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | ShrinkME</a>
-    </div>
-  </div>
-
-  <div class="project-row" style="background-color: #ffffff; padding: 20px; border-radius: 10px;">
-    <img src="verny.avif" alt="Vernapro">
-    <div class="project-info">
-      <h4>LANGUAGE LEARNING APPLICATION</h4>
-      <p><strong>Vernapro (Android Studio - Java, XML)</strong></p>
-      <p><em>August 2021 - December 2021</em></p>
-      <p>A language learning application for bilinguals wishing to learn a new language.<br>
-      Concepts of audio-visual learning using Shared Preferences and Intents for Quizzes.</p>
-      <a href="#" style="background-color: #e6f4ff; color: #0077cc;">GitHub | Vernapro</a>
+      <ul>
+        <li>Focused on providing a virtual platform for group therapy with Therapy Rooms and an articles section.</li>
+        <li>Firebase Authentication and Firebase Realtime Database.</li>
+        <li>Recycler view, list view, and XML layout elements for interactive design.</li>
+      </ul>
     </div>
   </div>
 
 </section>
 
+<section id="volunteer">
+  <h3>VOLUNTEER EXPERIENCE</h3>
 
-  <section id="volunteer">
-    <h3>Volunteer Experience</h3>
-    <ul>
-      <li><strong>President, Women in STEM Club</strong>: Led workshops, networking events, and STEM promotion at TRU (2022–2024).</li>
-      <li><strong>IEEE Paper Reviewer</strong>: Reviewed papers for the Bioinformatics and Biomedicine Conference 2022.</li>
-      <li><strong>Community Leader, Unschool</strong>: Managed team of 30+, conducted interviews, mentored interns (2020).</li>
-      <li><strong>Campus Ambassador, GenNext</strong>: Promoted educational counseling in high school (2019–2020).</li>
-    </ul>
-  </section>
+  <div class="education-container">
+    <div class="education-text">
+      <p><strong>President, Women in STEM Club</strong><br>
+  <a href="https://womeninstemtruca.wixsite.com/women-in-stem-trusu" target="_blank">Women in Stem TRU</a> | Sep 2022 – Apr 2024</p>
+      <ul>
+        <li>Led the Women in STEM Club, a student-led initiative aimed at uniting and motivating both women and men in STEM programs while encouraging more young women to pursue careers in science, technology, engineering, and mathematics.</li>
+        <li>Organized events and workshops that promoted awareness, inclusivity, and engagement across the university, helping participants explore opportunities in STEM fields.</li>
+        <li>Developed strong leadership, public speaking, and decision-making skills through managing a diverse team, coordinating logistics, and overseeing club strategy.</li>
+        <li>Actively mentored students, collaborated with faculty, and used the platform to enhance my management abilities, creativity, and critical thinking.</li>
+        <li>Created a positive impact on campus by providing inspiration, resources, and community for aspiring STEM students—especially women.</li>
+      </ul>
+    </div>
 
-  <section id="honors">
-    <h3>HONORS & AWARDS</h3>
-    <ul>
-      <li>Computing Science Upper Level Scholarship</li>
-      <li>TRU Foundation Undergraduate Academic Scholarship</li>
-      <li>Rob Horne Memorial Computing Science Scholarship</li>
-      <li>TELUS Excellence in Science Award</li>
-      <li>IndoCanLinks Science Award</li>
-      <li>Faculty of Science Dean's Award</li>
-    </ul>
-  </section>
+    <div class="education-image">
+      <img src="wistem.avif" alt="Women in STEM Event" />
+    </div>
+  </div>
+
+  <br><br>
+
+  <p><strong>IEEE Paper Reviewer</strong>: Reviewed papers for the Bioinformatics and Biomedicine Conference 2022.</p>
+  <p><strong>Community Leader, Unschool</strong>: Managed team of 30+, conducted interviews, mentored interns (2020).</p>
+  <p><strong>Campus Ambassador, GenNext</strong>: Promoted educational counseling in high school (2019–2020).</p>
+</section>
+
+
+
+ <section id="honors">
+  <h3>HONORS & AWARDS</h3>
+
+  <div style="max-width: 850px; margin: 0 auto; text-align: left;">
+    
+    <p style="font-weight: 600; font-size: 1.2em; margin-bottom: 4px;">Computing Science Upper Level Scholarship</p>
+    <p style="font-style: italic; font-size: 0.9em; margin-bottom: 8px;">February 2024 — Thompson Rivers University</p>
+    <p>Honored to have been awarded the Computing Science Upper Level Scholarship for my outstanding achievements in the field of computing science. This prestigious scholarship recognizes excellence in academic performance, innovation, and leadership within the computing science discipline.</p>
+
+    <br>
+
+    <p style="font-weight: 600; font-size: 1.2em; margin-bottom: 4px;">Faculty of Science Dean’s Award (Winter 2023)</p>
+    <p style="font-style: italic; font-size: 0.9em; margin-bottom: 8px;">March 2023 — Thompson Rivers University</p>
+    <p>The Faculty of Science and Computing Science Department Professors deemed me eligible for this award as a result of my hard work and diligence in my courses.</p>
+
+    <br>
+
+    <p style="font-weight: 600; font-size: 1.2em; margin-bottom: 4px;">Rob Horne Memorial Computing Science Scholarship</p>
+    <p style="font-style: italic; font-size: 0.9em; margin-bottom: 8px;">February 2023 — Thompson Rivers University</p>
+    <p>This scholarship is provided annually to a student enrolled in the Computing Science degree.</p>
+
+    <br>
+
+    <p style="font-weight: 600; font-size: 1.2em; margin-bottom: 4px;">TELUS Excellence in Science Award</p>
+    <p style="font-style: italic; font-size: 0.9em; margin-bottom: 8px;">February 2023 — Thompson Rivers University</p>
+    <p>This prestigious accolade underscores my passion for scientific inquiry and innovation, reflecting years of hard work and commitment to pushing the boundaries of knowledge.</p>
+
+    <br>
+
+    <p style="font-weight: 600; font-size: 1.2em; margin-bottom: 4px;">IndoCanLinks Science Award</p>
+    <p style="font-style: italic; font-size: 0.9em; margin-bottom: 8px;">August 2022 — Thompson Rivers University</p>
+    <p>This award is given by the university to a full-time student from the Faculty of Science annually. The award came with funding for my education too.</p>
+
+    <br>
+
+    <p style="font-weight: 600; font-size: 1.2em; margin-bottom: 4px;">TRU Foundation Undergraduate Academic Scholarship (Faculty of Science)</p>
+    <p style="font-style: italic; font-size: 0.9em; margin-bottom: 8px;">November 2022 — Thompson Rivers University</p>
+    <p>Having achieved one of the ten highest undergraduate GPAs in the entire Faculty of Science, TRU awarded me for my academic excellence.</p>
+
+  </div>
+</section>
 
   <section id="contact">
     <h3>CONTACT ME</h3>
     <p>Email: <a href="mailto:rhythm.c.chauhan@gmail.com">rhythm.c.chauhan@gmail.com</a></p>
     <p>Phone: <a href="tel:+12365979398">+1 236-597-9398</a></p>
-    <p>Website: <a href="https://eyeamrhythm2003.wixsite.com/aboutme" target="_blank">eyeamrhythm2003.wixsite.com/aboutme</a></p>
   </section>
 
   <footer>
