@@ -12,11 +12,49 @@
       padding: 0;
       box-sizing: border-box;
     }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: #77a7d1 #e6eff7;
+    }
+    ::-webkit-scrollbar {
+      width: 11px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e6eff7;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #94c7f3, #569fd8);
+      border-radius: 999px;
+      border: 2px solid #e6eff7;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #7db8ea, #3d8ecf);
+    }
     body {
       font-family: 'Montserrat', sans-serif;
       background: linear-gradient(120deg, #f0f4f8, #ffffff);
       color: #1a1a1a;
       overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    #scrollProgressTrack {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 1500;
+      background: rgba(147, 197, 253, 0.22);
+      pointer-events: none;
+    }
+
+    #scrollProgressBar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, #0ea5e9, #2563eb);
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.4);
+      transition: width 0.08s linear;
     }
 
     header {
@@ -24,6 +62,7 @@
       padding: 100px 20px 60px;
       text-align: center;
       overflow: hidden;
+      background-color: #f0f8ff;
     }
 
     .hero-image {
@@ -48,8 +87,28 @@
     }
 
     nav {
+      background-color: inherit;
+      padding: 12px 10px;
       margin-top: 30px;
+      margin-bottom: 0;
     }
+
+    #mainNav.nav-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1300;
+      margin-top: 0;
+      margin-bottom: 0;
+      border-radius: 0;
+      padding: 12px 10px;
+      text-align: center;
+      background: #f0f8ff !important;
+      border: none;
+      box-shadow: none;
+    }
+
 
     nav a {
       display: inline-block;
@@ -67,7 +126,15 @@
     nav a:hover {
       background-color: #333;
       color: #fff;
+      text-decoration: none;
       border-color: #333;
+    }
+
+    nav a.is-active {
+      background: #0f172a;
+      color: #ffffff;
+      border-color: #0f172a;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.2);
     }
 	.education-container {
   display: flex;
@@ -91,11 +158,11 @@
   box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 	
-	.work-photos {
+.work-photos {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 30px;
+  margin-top: 18px;
   flex-wrap: wrap;
 }
 
@@ -104,6 +171,89 @@
   max-width: 100%;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.work-grid {
+  max-width: 920px;
+  margin: 0 auto;
+  display: grid;
+  gap: 52px;
+}
+
+.work-card {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid #d7e1ea;
+  border-radius: 12px;
+  padding: 30px 28px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  line-height: 1.85;
+}
+
+.work-card h4 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.work-meta {
+  margin: 0 0 18px 0;
+  color: #4b5563;
+  font-weight: 600;
+  font-size: 0.96em;
+  text-align: left;
+}
+
+.work-card ul {
+  margin: 0 0 14px;
+  max-width: 100%;
+  padding-left: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.work-card li {
+  margin-bottom: 0;
+  line-height: 1.8;
+}
+
+.work-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 6px 11px;
+  border-radius: 999px;
+  font-size: 0.84em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: #e6f3ff;
+  color: #0f4f8a;
+  border: 1px solid #b7dbff;
+}
+
+body.dark-mode .work-card {
+  background: rgba(4, 15, 35, 0.72);
+  border-color: #1e3a8a;
+  box-shadow: 0 10px 22px rgba(2, 6, 23, 0.45);
+}
+
+body.dark-mode .work-card h4 {
+  color: #e2e8f0;
+}
+
+body.dark-mode .work-meta {
+  color: #bfdbfe;
+}
+
+body.dark-mode .skill-tag {
+  background: rgba(2, 132, 199, 0.2);
+  color: #bae6fd;
+  border-color: rgba(56, 189, 248, 0.42);
 }
 
 
@@ -289,17 +439,22 @@ section:nth-of-type(odd) {
   }
 }
 #backToTop {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   bottom: 40px;
   right: 30px;
   z-index: 100;
   font-size: 22px;
+  line-height: 1;
   background-color: #ffffff;
   color: black;
   border: 1px solid black; /* <-- White border */
   border-radius: 50%;
-  padding: 14px 18px;
+  width: 54px;
+  height: 54px;
+  padding: 0;
   cursor: pointer;
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   transition: background-color 0.3s ease;
@@ -309,27 +464,287 @@ section:nth-of-type(odd) {
   background-color: #f0f8ff;
 }
 
+#backToTop .arrow-icon {
+  position: relative;
+  top: 4px;
+}
+
+#themeToggle {
+  display: block;
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  z-index: 100;
+  font-size: 18px;
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#themeToggle:hover {
+  background-color: #f0f8ff;
+}
+
+body.dark-mode {
+  --dark-surface: rgba(11, 13, 16, 0.78);
+  --dark-surface-alt: rgba(6, 8, 11, 0.8);
+  background:
+    radial-gradient(circle at 10% 5%, rgba(56, 189, 248, 0.1), transparent 34%),
+    radial-gradient(circle at 95% 0%, rgba(96, 165, 250, 0.08), transparent 28%),
+    linear-gradient(140deg, #020202, #050507 42%, #090a0c 74%, #0d0f12);
+  color: #e2e8f0;
+  background-size: auto, auto, auto, 44px 44px, 44px 44px;
+  background-image:
+    radial-gradient(circle at 10% 5%, rgba(56, 189, 248, 0.1), transparent 34%),
+    radial-gradient(circle at 95% 0%, rgba(96, 165, 250, 0.08), transparent 28%),
+    linear-gradient(140deg, #020202, #050507 42%, #090a0c 74%, #0d0f12),
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  animation: techGridMove 22s linear infinite;
+}
+
+body.dark-mode,
+html.dark-mode-ui {
+  scrollbar-color: #334155 #0a0a0d;
+}
+
+html.dark-mode-ui::-webkit-scrollbar-track {
+  background: #0a0a0d;
+  box-shadow: inset 0 0 10px rgba(34, 211, 238, 0.12);
+}
+
+html.dark-mode-ui::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #67e8f9, #22d3ee 45%, #0ea5e9);
+  border: 2px solid #0a0a0d;
+  box-shadow:
+    0 0 10px rgba(34, 211, 238, 0.65),
+    0 0 20px rgba(14, 165, 233, 0.45),
+    inset 0 0 6px rgba(255, 255, 255, 0.25);
+}
+
+html.dark-mode-ui::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #a5f3fc, #22d3ee 50%, #0284c7);
+  box-shadow:
+    0 0 12px rgba(34, 211, 238, 0.78),
+    0 0 24px rgba(14, 165, 233, 0.58),
+    inset 0 0 8px rgba(255, 255, 255, 0.35);
+}
+
+body.dark-mode #scrollProgressTrack {
+  background: rgba(14, 165, 233, 0.18);
+}
+
+body.dark-mode #scrollProgressBar {
+  background: linear-gradient(90deg, #22d3ee, #0ea5e9, #2563eb);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.45);
+}
+
+@keyframes techGridMove {
+  0% {
+    background-position: 0 0, 0 0, 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 0, 0 0, 0 0, 44px 44px, -44px -44px;
+  }
+}
+
+body.dark-mode nav a {
+  background: transparent;
+  color: #dbeafe;
+  border-color: #1e3a8a;
+  box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.35);
+}
+
+body.dark-mode nav a:hover {
+  background: #22d3ee;
+  color: #04131a;
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 18px rgba(34, 211, 238, 0.55);
+  text-decoration: none;
+}
+
+body.dark-mode nav a.is-active {
+  background: #22d3ee !important;
+  color: #04131a;
+  border-color: #22d3ee;
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.45), 0 0 16px rgba(34, 211, 238, 0.5);
+}
+
+body.dark-mode section:nth-of-type(even) {
+  background: var(--dark-surface-alt);
+}
+
+body.dark-mode section:nth-of-type(odd) {
+  background: var(--dark-surface);
+}
+
+body.dark-mode header {
+  background: var(--dark-surface);
+}
+
+body.dark-mode nav {
+  background: transparent !important;
+  border-bottom: none;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+body.dark-mode #mainNav.nav-fixed {
+  background: var(--dark-surface) !important;
+  border: none;
+  box-shadow: none;
+}
+
+body.dark-mode section h3,
+body.dark-mode .project-info h4,
+body.dark-mode header h1,
+body.dark-mode header h2 {
+  color: #f8fafc;
+  letter-spacing: 0.01em;
+}
+
+body.dark-mode section p,
+body.dark-mode .project-info p,
+body.dark-mode ul li {
+  color: #cbd5e1;
+}
+
+body.dark-mode a {
+  color: #67e8f9;
+}
+
+body.dark-mode .hero-image,
+body.dark-mode .education-image img,
+body.dark-mode .work-photos img,
+body.dark-mode .project-row img {
+  border: 1px solid #334155;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
+}
+
+body.dark-mode .project-row {
+  background: linear-gradient(145deg, rgba(5, 12, 28, 0.9), rgba(9, 26, 52, 0.8)) !important;
+  border: 1px solid #1d4ed8;
+  box-shadow: 0 16px 34px rgba(2, 6, 23, 0.45), inset 0 0 0 1px rgba(34, 211, 238, 0.12);
+}
+
+body.dark-mode .github-link {
+  background: rgba(7, 22, 46, 0.8);
+  color: #bae6fd;
+  border: 1px solid #0284c7;
+}
+
+body.dark-mode .github-link:hover {
+  background: linear-gradient(120deg, #0ea5e9, #2563eb);
+  color: #e0f2fe;
+}
+
+body.dark-mode section {
+  border-bottom-color: rgba(100, 116, 139, 0.28);
+}
+
+body.dark-mode footer {
+  background: #020617;
+  color: #94a3b8;
+  border-top: 1px solid rgba(100, 116, 139, 0.26);
+}
+
+body.dark-mode #backToTop,
+body.dark-mode #themeToggle {
+  background: linear-gradient(180deg, #0f172a, #1e293b);
+  color: #f8fafc;
+  border-color: #475569;
+  box-shadow: 0 10px 20px rgba(2, 6, 23, 0.45);
+}
+
+body.dark-mode #backToTop:hover,
+body.dark-mode #themeToggle:hover {
+  background: linear-gradient(135deg, #0891b2, #14b8a6);
+  color: #ecfeff;
+  border-color: #22d3ee;
+}
+
 
   </style>
 </head>
 <body>
-<button id="backToTop" title="Back to top"> ↑ </button>
+<div id="scrollProgressTrack" aria-hidden="true"><div id="scrollProgressBar"></div></div>
+<button id="backToTop" title="Back to top"><span class="arrow-icon">⌃</span></button>
+<button id="themeToggle" title="Toggle dark mode">🌙</button>
 <script>
-  const backToTopBtn = document.getElementById('backToTop');
+  document.addEventListener('DOMContentLoaded', () => {
+    const backToTopBtn = document.getElementById('backToTop');
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const scrollProgressBar = document.getElementById('scrollProgressBar');
+    const mainNav = document.getElementById('mainNav');
+    const navLinks = Array.from(document.querySelectorAll('#mainNav a[href^="#"]'));
+    const trackedSections = Array.from(document.querySelectorAll('section[id]'));
+    const savedTheme = localStorage.getItem('theme');
+    let navFixStart = 0;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      backToTopBtn.style.display = 'block';
-    } else {
-      backToTopBtn.style.display = 'none';
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      document.documentElement.classList.add('dark-mode-ui');
+      themeToggleBtn.textContent = '☀️';
     }
-  });
 
-  backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+    const computeNavFixStart = () => {
+      mainNav.classList.remove('nav-fixed');
+      navFixStart = mainNav.getBoundingClientRect().top + window.scrollY;
+    };
+
+    const updateScrollUI = () => {
+      backToTopBtn.style.display = 'block';
+      themeToggleBtn.style.display = 'block';
+      const scrollTop = window.scrollY;
+      mainNav.classList.toggle('nav-fixed', scrollTop > navFixStart);
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollProgressBar.style.width = `${progress}%`;
+
+      let activeId = '';
+      trackedSections.forEach((section) => {
+        const top = section.offsetTop - 180;
+        const bottom = top + section.offsetHeight;
+        if (scrollTop >= top && scrollTop < bottom) {
+          activeId = section.id;
+        }
+      });
+
+      navLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        link.classList.toggle('is-active', href === `#${activeId}`);
+      });
+    };
+
+    window.addEventListener('scroll', updateScrollUI, { passive: true });
+    window.addEventListener('resize', () => {
+      computeNavFixStart();
+      updateScrollUI();
     });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      const darkModeEnabled = document.body.classList.contains('dark-mode');
+      document.documentElement.classList.toggle('dark-mode-ui', darkModeEnabled);
+      themeToggleBtn.textContent = darkModeEnabled ? '☀️' : '🌙';
+      localStorage.setItem('theme', darkModeEnabled ? 'dark' : 'light');
+    });
+
+    computeNavFixStart();
+    updateScrollUI();
   });
 </script>
 
@@ -337,7 +752,7 @@ section:nth-of-type(odd) {
     <img src="profile.jpg" alt="Rhythm Chauhan" class="hero-image" />
     <h1>HEY! YOU'VE FOUND</h1>
     <h2>RHYTHM CHAUHAN</h2>
-    <nav>
+    <nav id="mainNav">
       <a href="#about">About</a>
       <a href="#education">Education</a>
       <a href="#work">Work</a>
@@ -379,54 +794,101 @@ section:nth-of-type(odd) {
 
   <section id="work">
     <h3>WORK EXPERIENCE</h3>
-	  <p><strong>Technical Account Manager</strong><br><a href="https://www.vvctec.com">Vivacity Technologies</a> | Dec 2025 – Present</p>
-    <ul>
-      <li>Primary manager for all VivaCitadel client accounts, managing relationships, onboarding, and post deployment support, while guiding users through feature usage, and technical trade-offs in alignment with product strategy
-<li>Align client needs with the product roadmap by collaborating with the product, and cross-functional teams</li>
-<li>Conduct technical and customer research to support product decisions and documentation alongwith building documentations and proof of concepts for the product roadmap</li>
-<li>Proactively identify risks, gaps, and growth opportunities across accounts, support user adoption and retention, and contribute to long-term customer success and product improvementment program, ensuring smooth coordination, iterative delivery, and stakeholder alignment.</li>
-<li>Played a key role in early-stage lead generation efforts by helping position the product, support demos, and secure initial client traction.</li>
-    </ul>
-	<div class="work-photos">
-  <img src="vivacity1.jpg" alt="Working at Vivacity" />
-  <img src="vivacity2.jpg" alt="Presenting AI module" />
-</div>
-<br><br>
-    <p><strong>Technical Product Analyst</strong><br><a href="https://www.vvctec.com">Vivacity Technologies</a> | Jan 2024 – Dec 2025</p>
-    <ul>
-      <li>Led project management for two client-specific implementations and one broader workshop-based deployment program, ensuring smooth coordination, iterative delivery, and stakeholder alignment.
-<li>Worked hands-on in product management, helping shape and prioritize use cases based on user needs and client feedback.
-<li>Drove the development of the product’s AI module from research to completion, contributing directly to model selection, POC generation, and integration.
-<li>Collaborated across engineering, design, and client teams to translate business goals into actionable technical solutions.
-<li>Played a key role in early-stage lead generation efforts by helping position the product, support demos, and secure initial client traction.
-    </ul>
-	
-<br><br>
-    <p><strong>ML/AI Engineer & Website Developer</strong><br><a href="https://www.aurorauav.com">Aurora UAV Services</a> | Apr 2024 – Present</p>
-    <ul>
-      <li> Designing and implementing AI algorithms using R and Python for analyzing LiDAR and orthographic data, and
- producing detailed reports and maps on forest conditions</li>
- <li>
- Developing and maintaining a user-friendly web portal on cPanel to ensure seamless access to data and reports
- for stakeholders.</li><li>
- Creating automated workflows to streamline data processing, reduce manual intervention, and enhance
- efficiency.</li><li>
- Utilized PHP, HTML, and JavaScript to lead the conversion of a single-page website into a dynamic multi-page
- platform. </li><li>
-Implemented Google Analytics for tracking website trafficand conducted SEO editing to enhance visibility</li>
-    </ul>
-    <p><strong>Technical Analyst</strong><br><a href="https://www.vvctec.com">Vivacity Technologies</a> | Jun 2023 – Dec 2023</p>
-    <ul>
-      <li>Developed full-stack apps using React, Node.js, and Google Maps APIs.</li>
-      <li>Managed GitHub repos, wrote API docs, and assisted with cybersecurity metrics.</li>
-    </ul>
-    <p><strong>Research Assistant</strong><br><a href="https://www.tru.ca/">TRU</a> | Feb 2022 – Apr 2022</p>
-    <ul>
-      <li>Analyzed fileless malware through static/dynamic techniques.</li>
-      <li>Evaluated AutoML tools and supported academic publishing.</li>
-    </ul>
-  
-  
+    <div class="work-grid">
+      <article class="work-card">
+        <h4>Technical Account Manager</h4>
+        <p class="work-meta"><a href="https://www.vvctec.com">Vivacity Technologies</a> | Dec 2025 – Present</p>
+        <ul>
+          <li><strong>Primary manager</strong> for 6 VivaCitadel accounts, leading <strong>onboarding</strong>, relationships, and post-deployment support.</li>
+          <li>Aligned client needs with <strong>product roadmap priorities</strong> across product and cross-functional teams.</li>
+          <li>Conducted technical and customer research, documentation, and <strong>proofs of concept</strong> for roadmap decisions.</li>
+          <li>Identified risks, adoption gaps, and growth opportunities to improve <strong>retention</strong> and long-term outcomes.</li>
+          <li>Supported <strong>early-stage lead generation</strong> through product positioning and technical demos.</li>
+        </ul>
+        <div class="work-skills">
+          <span class="skill-tag">Account Management</span>
+          <span class="skill-tag">Product Strategy</span>
+          <span class="skill-tag">Client Onboarding</span>
+          <span class="skill-tag">Technical Demos</span>
+          <span class="skill-tag">POCs</span>
+        </div>
+        <div class="work-photos">
+          <img src="vivacity1.jpg" alt="Working at Vivacity" />
+          <img src="vivacity2.jpg" alt="Presenting AI module" />
+        </div>
+      </article>
+
+      <article class="work-card">
+        <h4>Technical Product Analyst</h4>
+        <p class="work-meta"><a href="https://www.vvctec.com">Vivacity Technologies</a> | Jan 2024 – Dec 2025</p>
+        <ul>
+          <li>Led <strong>delivery management</strong> for client implementations and workshop-based deployment programs.</li>
+          <li>Worked hands-on in <strong>product management</strong> to shape and prioritize use cases from user feedback.</li>
+          <li>Drove <strong>AI module development</strong> from research to completion, including model selection and POCs.</li>
+          <li>Collaborated across engineering, design, and client teams to convert goals into <strong>technical solutions</strong>.</li>
+          <li>Contributed to <strong>early traction</strong> through demos and product communication support.</li>
+        </ul>
+        <div class="work-skills">
+          <span class="skill-tag">Product Management</span>
+          <span class="skill-tag">AI Research</span>
+          <span class="skill-tag">Cross-functional Leadership</span>
+          <span class="skill-tag">Implementation Delivery</span>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <h4>ML/AI Engineer & Website Developer</h4>
+        <p class="work-meta"><a href="https://www.aurorauav.com">Aurora UAV Services</a> | Apr 2024 – Jan 2025</p>
+        <ul>
+          <li>Designed <strong>AI algorithms</strong> in R and Python for LiDAR and orthographic forest-condition analysis.</li>
+          <li>Developed and maintained a cPanel <strong>web portal</strong> for stakeholder access to reports and maps.</li>
+          <li>Created <strong>automated workflows</strong> to streamline processing and reduce manual effort.</li>
+          <li>Led <strong>single-page to multi-page platform conversion</strong> using PHP, HTML, and JavaScript.</li>
+          <li>Implemented <strong>Google Analytics</strong> and SEO updates to improve visibility.</li>
+        </ul>
+        <div class="work-skills">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">LiDAR Analytics</span>
+          <span class="skill-tag">PHP</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">SEO</span>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <h4>Technical Analyst</h4>
+        <p class="work-meta"><a href="https://www.vvctec.com">Vivacity Technologies</a> | Jun 2023 – Dec 2023</p>
+        <ul>
+          <li>Developed <strong>full-stack applications</strong> using React, Node.js, and Google Maps APIs.</li>
+          <li>Managed GitHub repositories, authored <strong>API documentation</strong>, and supported cybersecurity metrics.</li>
+        </ul>
+        <div class="work-skills">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Google Maps API</span>
+          <span class="skill-tag">API Documentation</span>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <h4>Research Assistant</h4>
+        <p class="work-meta"><a href="https://www.tru.ca/">TRU</a> | Feb 2022 – Apr 2022</p>
+        <ul>
+          <li>Analyzed <strong>fileless malware</strong> using static and dynamic techniques.</li>
+          <li>Evaluated <strong>AutoML tools</strong> and supported academic publication efforts.</li>
+        </ul>
+        <div class="work-skills">
+          <span class="skill-tag">Cybersecurity Research</span>
+          <span class="skill-tag">Static Analysis</span>
+          <span class="skill-tag">Dynamic Analysis</span>
+          <span class="skill-tag">AutoML</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+
   <section id="projects">
   <h3>PROJECTS</h3>
 
@@ -596,10 +1058,11 @@ Implemented Google Analytics for tracking website trafficand conducted SEO editi
     <h3>CONTACT ME</h3>
     <p>Email: <a href="mailto:rhythm.c.chauhan@gmail.com">rhythm.c.chauhan@gmail.com</a></p>
     <p>Phone: <a href="tel:+12365979398">+1 236-597-9398</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/rhythm-chauhan/" target="_blank" rel="noopener noreferrer">rhythm-chauhan</a></p>
   </section>
 
   <footer>
-    &copy; 2025 Rhythm Chauhan. All rights reserved.
+    &copy; 2026 Rhythm Chauhan. All rights reserved.
   </footer>
 
   <script>
