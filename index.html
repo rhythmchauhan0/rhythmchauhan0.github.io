@@ -702,7 +702,12 @@ body.dark-mode #themeToggle:hover {
       backToTopBtn.style.display = 'block';
       themeToggleBtn.style.display = 'block';
       const scrollTop = window.scrollY;
-      mainNav.classList.toggle('nav-fixed', scrollTop > navFixStart);
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (isMobile) {
+        mainNav.classList.remove('nav-fixed');
+      } else {
+        mainNav.classList.toggle('nav-fixed', scrollTop > navFixStart);
+      }
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       scrollProgressBar.style.width = `${progress}%`;
